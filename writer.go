@@ -87,6 +87,11 @@ func (w *Writer) parseLogEvent(data []byte) (*sentry.Event, bool) {
 				Value:      bytesToStrUnsafe(value),
 				Stacktrace: newStacktrace(),
 			})
+		case "panic":
+			event.Exception = append(event.Exception, sentry.Exception{
+				Value:      bytesToStrUnsafe(value),
+				Stacktrace: newStacktrace(),
+			})
 		}
 
 		return nil
